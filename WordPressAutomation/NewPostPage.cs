@@ -44,7 +44,7 @@ namespace WordPressAutomation
         }
 
         public void Publish() {
-            Driver.Instance.FindElement(By.Id("post_title")).SendKeys(title);
+            Driver.Instance.FindElement(By.Id("title")).SendKeys(title);
 
             Driver.Instance.SwitchTo().Frame("content_ifr");
             Driver.Instance.SwitchTo().ActiveElement().SendKeys(body);
