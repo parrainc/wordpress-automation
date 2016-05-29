@@ -15,13 +15,13 @@ namespace WordPressTests
         {
 
             NewPostPage.GoTo();
-            NewPostPage.CreatePost("This is the test Post Title")
+            NewPostPage.CreatePost("This is the test Post Title, Again")
                 .WithBody("Hi, This is the body of the post!")
                 .Publish();
 
             NewPostPage.GoToNewPost();
 
-            Assert.AreEqual(PostPage.Title, "This is the test Post Title", "Title did not match new post");
+            Assert.AreEqual(PostPage.Title, "This is the test Post Title, Again", "Title did not match new post");
 
         }
     }
