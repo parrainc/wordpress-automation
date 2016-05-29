@@ -15,7 +15,7 @@ namespace WordPressAutomation
 
         public static void Initialize() {
             Instance = new FirefoxDriver();
-            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+            TurnOnWait();
         }
 
         public static void Close()
@@ -26,6 +26,23 @@ namespace WordPressAutomation
         internal static void Wait(TimeSpan timeSpan)
         {
             Thread.Sleep((int) timeSpan.TotalSeconds * 1000);
+        }
+
+        public static void NoWait(Action action)
+        {
+            TurnOffWait();
+            action();
+            TurnOnWait();
+        }
+
+        private static void TurnOnWait()
+        {
+            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+        }
+
+        private static void TurnOffWait()
+        {
+            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0));
         }
     }
 }
