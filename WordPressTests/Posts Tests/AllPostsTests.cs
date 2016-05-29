@@ -16,10 +16,7 @@ namespace WordPressTests.Posts_Tests
             ListPostsPage.GoTo(PostType.Posts);
             ListPostsPage.StoreCount();
 
-            NewPostPage.GoTo();
-            NewPostPage.CreatePost("Added Post show up, Title")
-                        .WithBody("Body of the new added post")
-                        .Publish();
+            PostCreator.CreatePost();
 
             ListPostsPage.GoTo(PostType.Posts);
             Assert.AreEqual(ListPostsPage.PreviousPostCount + 1, 
@@ -27,11 +24,25 @@ namespace WordPressTests.Posts_Tests
                             "Count of posts did not increase"
                             );
 
-            Assert.IsTrue(ListPostsPage.DoesPostExistWithTitle("Added Post show up, Title"));
+            Assert.IsTrue(ListPostsPage.DoesPostExistWithTitle(PostCreator.PreviousTitle));
 
-            ListPostsPage.TrashPostOnHover("Added Post show up, Title");
+            ListPostsPage.TrashPostOnHover(PostCreator.PreviousTitle);
             Assert.AreEqual(ListPostsPage.PreviousPostCount, ListPostsPage.CurrentPostsCount, "Couldn't Trash Post");
              
+        }
+
+        [TestMethod]
+        public void Can_Search_Posts()
+        {
+            PostCreator.CreatePost();
+
+            ListPostsPage.GoTo(PostType.Posts);
+
+            ListPostsPage.SearchForPost(PostCreator.PreviousTitle);
+
+            Assert.IsTrue(ListPostsPage.DoesPostExistWithTitle(PostCreator.PreviousTitle));
+
+            ListPostsPage.TrashPostOnHover(PostCreator.PreviousTitle);
         }
     }
 }
