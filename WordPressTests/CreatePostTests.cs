@@ -8,23 +8,11 @@ using WordPressAutomation;
 namespace WordPressTests
 {
     [TestClass]
-    public class CreatePostTests
+    public class CreatePostTests : BaseClass
     {
-        [TestInitialize]
-        public void Init()
-        {
-            Driver.Initialize();
-        }
-
         [TestMethod]
         public void Can_Create_A_Basic_Post()
         {
-            #region Login
-            LoginPage.GoTo();
-            LoginPage.LoginAs("user")
-                .WithPassword("admintoor")
-                .Login();
-            #endregion
 
             NewPostPage.GoTo();
             NewPostPage.CreatePost("This is the test Post Title")
@@ -35,12 +23,6 @@ namespace WordPressTests
 
             Assert.AreEqual(PostPage.Title, "This is the test Post Title", "Title did not match new post");
 
-        }
-
-        [TestCleanup]
-        public void Cleanup()
-        {
-            Driver.Close();
         }
     }
 }

@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BaseClass.cs" />
     <Compile Include="CreatePostTests.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="PageTests.cs" />
