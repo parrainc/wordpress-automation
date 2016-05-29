@@ -12,6 +12,9 @@ namespace WordPressTests
         [TestInitialize]
         public void Init() {
             Driver.Initialize();
+
+            PostCreator.Initialize();
+
             #region login
             LoginPage.GoTo();
             LoginPage.LoginAs("user")
@@ -22,7 +25,9 @@ namespace WordPressTests
         }
 
         [TestCleanup]
-        public void Cleanup() {
+        public void Cleanup()
+        {
+            PostCreator.Cleanup();
             Driver.Close();
         }
     }

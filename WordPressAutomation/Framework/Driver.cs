@@ -20,7 +20,7 @@ namespace WordPressAutomation
 
         public static void Close()
         {
-            //Instance.Close();
+            Instance.Close();
         }
 
         internal static void Wait(TimeSpan timeSpan)

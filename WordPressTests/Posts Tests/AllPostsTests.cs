@@ -27,7 +27,9 @@ namespace WordPressTests.Posts_Tests
             Assert.IsTrue(ListPostsPage.DoesPostExistWithTitle(PostCreator.PreviousTitle));
 
             ListPostsPage.TrashPostOnHover(PostCreator.PreviousTitle);
-            Assert.AreEqual(ListPostsPage.PreviousPostCount, ListPostsPage.CurrentPostsCount, "Couldn't Trash Post");
+            Assert.AreEqual(ListPostsPage.PreviousPostCount, 
+                            ListPostsPage.CurrentPostsCount, 
+                            "Couldn't Trash Post");
              
         }
 
@@ -41,8 +43,6 @@ namespace WordPressTests.Posts_Tests
             ListPostsPage.SearchForPost(PostCreator.PreviousTitle);
 
             Assert.IsTrue(ListPostsPage.DoesPostExistWithTitle(PostCreator.PreviousTitle));
-
-            ListPostsPage.TrashPostOnHover(PostCreator.PreviousTitle);
         }
     }
 }

@@ -53,16 +53,39 @@ namespace WordPressAutomation
             return s.ToString();
         }
 
-        private static string[] Words = new[]
+        private static readonly string[] Words = new[]
         {
             "Boy", "Cat", "Dog", "Rabbit", "Baseball", 
             "Throw", "Find", "Scary", "Mustard"
         };
 
-        private static string[] Articles = new[]
+        private static readonly string[] Articles = new[]
         {
             "The", "an", "and", "a", "of", "to",
             "it", "as"
         };
+
+        public static void Initialize()
+        {
+            PreviousTitle = null;
+            PreviousBody = null;
+        }
+
+        public static void Cleanup()
+        {
+            if (CreatedAPost)
+                TrashPost();
+        }
+
+        private static void TrashPost()
+        {
+            ListPostsPage.TrashPostOnHover(PreviousTitle);
+            Initialize();
+        }
+
+        protected static bool CreatedAPost
+        {
+            get { return !String.IsNullOrEmpty(PreviousTitle); }
+        }
     }
 }
