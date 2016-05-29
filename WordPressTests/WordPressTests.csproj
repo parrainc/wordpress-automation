@@ -53,10 +53,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BaseClass.cs" />
-    <Compile Include="CreatePostTests.cs" />
-    <Compile Include="LoginTest.cs" />
-    <Compile Include="PageTests.cs" />
+    <Compile Include="Utilities\BaseClass.cs" />
+    <Compile Include="Smoke Tests\CreatePostTests.cs" />
+    <Compile Include="Smoke Tests\LoginTest.cs" />
+    <Compile Include="Smoke Tests\PageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
